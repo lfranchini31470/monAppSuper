@@ -3,8 +3,7 @@ name: Run Tests on Push
 
 on:
   push:
-    branches:
-      - nom_de_votre_branche
+    branches: [main]
 
 jobs:
   test:
