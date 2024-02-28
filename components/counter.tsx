@@ -28,7 +28,7 @@ export function Counter() {
               setCounter(0);
             }}
           ></Button>
-          <Text style={{color: 'white', padding: 15 }}>{counter}</Text>
+          <Text style={{color: 'green', padding: 15 }}>{counter}</Text>
         </View>
       </>
     );

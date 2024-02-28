@@ -9,37 +9,50 @@ import Colors from '@/constants/Colors';
 import { useColorScheme } from './useColorScheme';
 
 type ThemeProps = {
-  lightColor?: string;
-  darkColor?: string;
+  themeName?: keyof typeof Colors
 };
 
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 
 export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+  props: {
+    themeName: null; light?: string; dark?: string 
+},
+  colorName: keyof typeof Colors.light & keyof typeof Colors.dark & keyof typeof Colors.blue.colors
 ) {
-  const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
+  const themeNameFromProps = props.themeName ?? 'dark';
+  const theme = themeNameFromProps ?? useColorScheme() ?? 'light';
+  return Colors[theme][colorName];
 
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
 }
 
 export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const { style, ...otherProps } = props;
+  if (props.themeName){
+    const color = useThemeColor({ themeName: props.themeName }, 'text');
+    return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  } else {
+    const color = useThemeColor({
+      themeName: null
+    }, 'text');
+    return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  }
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
 }
 
 export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
-
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+  const { style, ...otherProps } = props;
+  if (props.themeName) {
+      const backgroundColor = useThemeColor(
+                         { themeName: props.themeName }, 'background');
+    return <DefaultView style={[{ backgroundColor }, style]}
+                {...otherProps} />;
+    } else {
+      const backgroundColor = useThemeColor({
+        themeName: null
+      }, 'background');
+      return <DefaultView style={[{ backgroundColor }, style]} 	{...otherProps} />;
+    }
+  
 }
