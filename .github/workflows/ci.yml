@@ -1,1 +1,22 @@
 
+name: Run Tests on Push
+
+on:
+  push:
+    branches:
+      - nom_de_votre_branche
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm run test
