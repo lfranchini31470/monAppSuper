@@ -19,7 +19,7 @@ export function StyledSectionList() {
     <SectionList sections={DATA} keyExtractor={(item, index) => item + index}
       renderItem={({item}) => (
         <View>
-          <Text>{item}</Text>
+          <Text style={{ color: 'white' }}>{item}</Text>
         </View>
       )}
       ></SectionList></>

@@ -13,16 +13,16 @@ export default function ThreeScreen() {
           return state;
       }
     }, []);
-/*     function handleSubmit(e: any) {
-      e.preventDefault(); dispatch( {type: 'add', payload: inputRef.current?.value});
-      inputRef.current!.value = ''; setFormValidation(!isFormValidated);
-    } */
+    function handleSubmit(e: any) {
+      // e.preventDefault(); dispatch( {type: 'add', payload: inputRef.current?.value});
+      // inputRef.current!.value = ''; setFormValidation(!isFormValidated);
+    }
   
     return (
       <>
-{/*         <form onSubmit={handleSubmit}>
-          <input ref={inputRef} />
-        </form> */}
+        <form onSubmit={handleSubmit}>
+          {/* <input ref={inputRef} /> */}
+        </form>
         <ul> {items.map((item, index) => (
           <li key={index}>
             {item} <button onClick={() => dispatch({ type: 'remove', index })}>X</button>

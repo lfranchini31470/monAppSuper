@@ -14,17 +14,16 @@ import ThemeSelector from '@/components/themeSelection';
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      {/* <StyledSectionList></StyledSectionList> */}
-      {/* <Card error={true} loading={undefined} title={undefined} />
-      <Card loading={true} error={undefined} title={undefined} />
-      <Card loading={false} title="Title" error={undefined} /> */}
-      <App></App>
-      {/* <SimpleForm></SimpleForm> */}
-      <ThemeSelector></ThemeSelector>
-      <Counter></Counter>
-      {/* <ThreeScreen></ThreeScreen> */}
+        {/* <App></App> */}
+        <SimpleForm></SimpleForm>
+        <ThemeSelector></ThemeSelector>
+        <Counter></Counter>
+        {/* <ThreeScreen></ThreeScreen> */}
+        <Text key="0">Devin</Text>
+        <Text key="1">Gabe</Text>
+        <Text key="2">Kim</Text>
     </View>
-  );
+);
 }
 
 const styles = StyleSheet.create({
